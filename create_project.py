@@ -9,8 +9,7 @@ import settings
 env = Environment(loader=PackageLoader('create_project', 'templates'))
 
 def create_file_structure(project_name, project_dir):
-    """This creates basic file structure for the project.
-    """
+    """This creates basic file structure for the project."""
     dirs = settings.dirs 
     os.mkdir(os.path.join(project_dir, project_name))
     for d in dirs:
@@ -18,8 +17,7 @@ def create_file_structure(project_name, project_dir):
 
 def create_stub_files(project_name, project_dir):
     """Creates stub files in the target directory. In the files_to_create 
-    list, the ordering is (template, name, location). 
-   """
+    list, the ordering is (template, name, location)."""
     bibliography_line  = "\\bibliography{%s.bib}" % project_name
     latex_template = env.get_template('base_latex.tex').render(project_name = project_name, 
                                                                author = settings.author, 
@@ -42,15 +40,16 @@ def main():
     args = parser.parse_args()
     name = args.name 
     if "_" in args.name: 
-        answer = raw_input("Ironically, project names with '_' are problematic - is the name %s instead OK? [Y/n]? "% (name.replace("_", "")))
-        if answer in ("Y", "y", "Yes", "yes"): 
+        answer = raw_input("""Ironically, project names with '_' are problematic. 
+                              Is the name %s instead OK? [Y/n]? """% (name.replace("_", "")))
+        if answer in ("Y", "y", "Yes", "yes", "YES", "Ja", "Sure", "Si"): 
             name = name.replace("_", "")
         else:
-            print("Project creation canceled")
+            print("Project creation canceled.")
             exit 
     create_file_structure(name, os.getcwd())
     create_stub_files(name, os.getcwd())
-    print("Project created. To test, change directory to ./%s/writeup and run 'make' to creat the pdf" % name )
+    print("Project created. To test, change directory to ./%s/writeup and run 'make' to create the pdf" % name )
 
 if __name__ == '__main__':
     main() 

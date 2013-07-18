@@ -1,16 +1,38 @@
 create_project.py
 =================
 
-This is a python script for building a directory structure and a "hello world" version of a LaTeX paper. 
-[Here](https://dl.dropboxusercontent.com/u/420874/permanent/testproject.pdf) is an example of the PDF created by create_project.py. 
+This is a Python script for creating the directory structure and some of the files needed for a new project. 
+[Here](https://dl.dropboxusercontent.com/u/420874/permanent/testproject.pdf) is an example of the PDF created by `create_project.py`. 
 
-Author
-------
-John J. Horton <john.joseph.horton@gmail.com>
+Author: John J. Horton 
+Email: <john.joseph.horton@gmail.com>
 
 Configuration
 -------------
 By modifying the file `settings.py`, you can create custom values for author name, affiliation, standard "thanks" footnotes, directory structure, etc. 
+For example, my `settings.py` is: 
+
+```
+author = "John J. Horton" 
+school = "NYU Stern" 
+footnote = """Author contact information, datasets and code are currently or will be available at \\href{http://www.john-joseph-horton.com/}{http://www.john-joseph-horton.com/}."""
+bibliography_style = "aer" 
+
+dirs = [
+    'literature', 
+    'code/R', 
+    'code/SQL', 
+    'code/python', 
+    'data',
+    'models',    
+    'submit', 
+    'writeup/images', 
+    'writeup/numbers', 
+    'writeup/plots', 
+    'writeup/tables',
+    'writeup/diagrams', 
+]
+```
 
 How it works
 ------------
