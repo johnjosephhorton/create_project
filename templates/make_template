@@ -1,0 +1,8 @@
+{{ project_name }}.pdf: {{ project_name }}.bib {{ project_name }}.tex 
+	pdflatex -interaction=nonstopmode {{ project_name }}
+	bibtex {{ project_name }}
+	pdflatex -interaction=nonstopmode {{ project_name }}
+	pdflatex -interaction=nonstopmode {{ project_name }}
+
+clean:
+	rm *.aux *.log *.out *.bbl *.blg *.dvi *.aux *.fff *.lof *.out 

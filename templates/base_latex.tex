@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+\usepackage{booktabs}
+\usepackage{dcolumn} 
+\usepackage{epstopdf}
+\usepackage{fourier}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable} 
+\usepackage{natbib}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{algorithmic} 
+\usepackage{algorithm2e}
+
+\hypersetup{
+  colorlinks = TRUE,
+  citecolor=blue,
+  linkcolor=red,
+  urlcolor=black
+}
+
+\begin{document} 
+
+\title{ {{project_name}} }
+
+\date{\today}
+
+\author{ {{ author }} \\ {{ school }} \footnote{ {{ footnote }} } }
+\maketitle
+
+\begin{abstract}
+\noindent  Here is a really great abstract.  \newline
+\noindent JEL J01, J24, J3
+\end{abstract} 
+
+\section{Introduction}
+\cite{smith1999wealth} had some great ideas! 
+
+\section{Getting some stuff done in R}
+According to R's calculations, $1 + 1$ is equal to:
+
+%\input{./numbers/tough_problem.txt}
+
+\subsection{Plots!}
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[scale=0.25]{./plots/hist.png}
+%   \caption{Here is a figure}
+%   \label{fig:hist}
+% \end{figure}
+
+\subsection{We can make R get data from our database}
+
+%\input{./numbers/sql_output.txt}
+
+\section{Using matplotlib for making figures}
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[scale=0.25]{./diagrams/matplotlib.png}
+%   \caption{Here is a matplot lib constructed figure}
+%   \label{fig:matplotlib}
+% \end{figure}
+
+
+\bibliographystyle{aer}
+{{ bibliography_line }}
+
+\end{document} 
+
