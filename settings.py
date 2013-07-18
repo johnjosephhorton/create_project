@@ -6,6 +6,7 @@ bibliography_style = "aer"
 dirs = [
     'literature', 
     'code/R', 
+    'code/R/tests',
     'code/SQL', 
     'code/python', 
     'data',

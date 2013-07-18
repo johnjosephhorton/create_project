@@ -1,8 +1,11 @@
-{{ project_name }}.pdf: {{ project_name }}.bib {{ project_name }}.tex 
+{{ project_name }}.pdf: {{ project_name }}.bib {{ project_name }}.tex ./plots/hist.pdf 
 	pdflatex -interaction=nonstopmode {{ project_name }}
 	bibtex {{ project_name }}
 	pdflatex -interaction=nonstopmode {{ project_name }}
 	pdflatex -interaction=nonstopmode {{ project_name }}
+
+./plots/hist.pdf: ../code/R/{{ project_name }}.R
+	cd ../code/R; ./{{ project_name }}.R
 
 clean:
 	rm *.aux *.log *.out *.bbl *.blg *.dvi *.aux *.fff *.lof *.out 
