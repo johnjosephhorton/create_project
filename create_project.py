@@ -3,27 +3,41 @@
 import argparse 
 import os 
 import sys 
-from jinja2 import Environment, PackageLoader 
+from jinja2 import Environment, FileSystemLoader
 import settings 
 from datetime import date
 import stat 
 
-env = Environment(loader=PackageLoader('create_project', 'templates'))
+__author__ = 'John Joseph Horton'
+__copyright__ = 'Copyright (C) 2012  John Joseph Horton'
+__license__ = 'GPL v3'
+__maintainer__ = 'johnjosephhorton'
+__email__ = 'john.joseph.horton@gmail.com'
+__status__ = 'Development'
+__version__ = '0.1'
 
 def create_file_structure(project_name, project_dir):
     '''
     This creates basic file structure for the project.
     '''
     dirs = settings.dirs 
-    os.mkdir(os.path.join(project_dir, project_name))
-    for d in dirs:
-        os.makedirs(os.path.join(project_dir, project_name, d))
+    new_dir = os.path.join(project_dir, project_name)
+    if os.path.isdir(new_dir): 
+        print("Proposed directory name already exists. Try something else.")
+        sys.exit() 
+    else: 
+        os.mkdir(new_dir)
+        for d in dirs:
+            os.makedirs(os.path.join(project_dir, project_name, d))
 
 def create_stub_files(project_name, project_dir):
     '''
     Creates stub files in the target directory. In the files_to_create 
     list, the ordering is (template, name, location).
     '''
+    loader = FileSystemLoader(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'))
+    env = Environment(loader=loader)
     bibliography_line  = "\\bibliography{%s.bib}" % project_name
     latex_template = env.get_template('base_latex.tex').render(project_name = project_name, 
                                                                author = settings.author, 
