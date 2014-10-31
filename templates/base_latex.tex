@@ -22,6 +22,10 @@
   urlcolor=black
 }
 
+\newcommand{\important}[1]{\textcolor{blue}{\textbf{ #1}}}
+\newcommand{\quantclaim}[1]{\textcolor{red}{\textbf{ #1}}}
+\newcommand{\starlanguage}{Some TK scale about statistical significance.}
+
 \begin{document} 
 
 \title{ {{project_name}} }
@@ -39,14 +43,23 @@
 \section{Introduction}
 \cite{smith1999wealth} had some great ideas! 
 
+\important{This is an important claim!}
+\quantclaim{This is a quantitative claim!} 
+There a TK important claims in this document. 
+
 \subsection{Plots!}
 
 \begin{figure}[h]
-  \begin{center}
-  \caption{Here is a figure} \label{fig:hist}
-  \includegraphics[scale=0.25]{./plots/hist.pdf}
-  \end{center} 
+\centering 
+\caption{Here is a figure} \label{fig:hist}
+\begin{minipage}{0.50 \linewidth}
+\includegraphics[width = \linewidth]{./plots/hist.pdf}
+\\
+\emph{Notes}: Here are some notes.
+\end{minipage} 
 \end{figure}
+
+
 
 \bibliographystyle{aer}
 {{ bibliography_line }}
