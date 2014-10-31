@@ -5,6 +5,7 @@ import os
 import sys 
 from jinja2 import Environment, FileSystemLoader
 import settings 
+from settings import author
 from datetime import date
 import stat 
 
@@ -16,11 +17,27 @@ __email__ = 'john.joseph.horton@gmail.com'
 __status__ = 'Development'
 __version__ = '0.1'
 
-def create_file_structure(project_name, project_dir):
+dirs = [
+    'literature', 
+    'code/R', 
+    'code/R/tests',
+    'code/SQL', 
+    'code/python', 
+    'data',
+    'models',    
+    'submit', 
+    'writeup/images', 
+    'writeup/numbers', 
+    'writeup/plots', 
+    'writeup/tables',
+    'writeup/diagrams', 
+]
+
+
+def create_file_structure(project_name, project_dir, dirs):
     '''
     This creates basic file structure for the project.
     '''
-    dirs = settings.dirs 
     new_dir = os.path.join(project_dir, project_name)
     if os.path.isdir(new_dir): 
         print("Proposed directory name already exists. Try something else.")
@@ -46,13 +63,15 @@ def create_stub_files(project_name, project_dir):
                                                                bibliography_line = bibliography_line)
     bibtex_template = env.get_template('base_bibtex.bib').render() 
     makefile_template = env.get_template('make_template').render(project_name = project_name)
+    summary_script_template = env.get_template("base_summary.sh").render(project_name = project_name)
     r_template = env.get_template('base_R.R').render(author = settings.author, 
                                                      creation_date = date.today(), 
                                                      project_name = project_name)
     files_to_create = [(latex_template, "%s.tex" % project_name, "writeup", False), 
                        (bibtex_template, "%s.bib" % project_name, "writeup", False), 
                        (makefile_template, "Makefile", "writeup", False), 
-                       (r_template, "%s.R" % project_name, "code/R", True)]
+                       (r_template, "%s.R" % project_name, "code/R", True), 
+                       (summary_script_template, "summary.sh", "writeup", True)]
     for template, file_name, location, executable in files_to_create: 
         f = open(os.path.join(project_dir, project_name, location, file_name), "w")
         f.write(template)
@@ -75,7 +94,7 @@ def main():
         else:
             print("Project creation canceled.")
             exit 
-    create_file_structure(name, os.getcwd())
+    create_file_structure(name, os.getcwd(), dirs)
     create_stub_files(name, os.getcwd())
     print("Project created. To test, change directory to ./%s/writeup and run 'make' to create the pdf" % name )
 

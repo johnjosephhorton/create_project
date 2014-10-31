@@ -4,6 +4,10 @@
 	pdflatex -interaction=nonstopmode {{ project_name }}
 	pdflatex -interaction=nonstopmode {{ project_name }}
 
+summary.md: {{ project_name }}.bib {{ project_name }}.tex
+	./summary.sh 
+
+
 ./plots/hist.pdf: ../code/R/{{ project_name }}.R
 	cd ../code/R; ./{{ project_name }}.R
 
