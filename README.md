@@ -18,22 +18,8 @@ author = "John J. Horton"
 school = "NYU Stern" 
 footnote = """Author contact information, datasets and code are currently or will be available at \\href{http://www.john-joseph-horton.com/}{http://www.john-joseph-horton.com/}."""
 bibliography_style = "aer" 
-
-dirs = [
-    'literature', 
-    'code/R', 
-    'code/SQL', 
-    'code/python', 
-    'data',
-    'models',    
-    'submit', 
-    'writeup/images', 
-    'writeup/numbers', 
-    'writeup/plots', 
-    'writeup/tables',
-    'writeup/diagrams', 
-]
 ```
+
 Once you have modified `settings.py`, run: 
 	
 	sudo python setup.py install 
@@ -42,7 +28,7 @@ Once you save your changes, you can simply run:
 
 	create_project PROJECTNAME 
 
-The script will create a new directory `PROJECTNAME` with associated sub-directories specified in the `dir` variable in `settings.py`. 
+The script will create a new directory `PROJECTNAME` with associated sub-directories.
 The script will also populate these folders with "stub" files, depending upon the files specified in the function `created_stub_files` and the templates in the `./templates` folder. 
 In this default configuration, the stub files created are a latex file, a bibtex file and a Makefile, all in the `./writeup` folder.
 
@@ -55,6 +41,18 @@ The packages R will need are:
 	ggplot2 
 	testthat 
 	scales 
+	
+Getting a summary of your document
+----------------------------------
+From the `./writeup` directory, you can execute `make summary.md`
+which will generate a markdown file showing lists of important claims
+from the LaTeX document (those you have wrapped like so
+`\important{Important claim}`). It also does the same for lines wrapped
+in `\quantclaim`, which is a quantitative claim (I am always checking
+to see if these claims match the tables and figures and this
+simplifies the checking). Note that these tools require you to use one
+sentence per line in your LaTeX document. This summarization is done
+using a bash script called `summary.sh` in the writeup folder.  
 
 License
 -------
