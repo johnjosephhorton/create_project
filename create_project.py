@@ -25,7 +25,9 @@ dirs = [
     'code/python', 
     'data',
     'models',    
-    'submit', 
+    'submit',
+    'backups',
+    'snapshot', 
     'writeup/images', 
     'writeup/numbers', 
     'writeup/plots', 
@@ -87,7 +89,7 @@ def main():
     args = parser.parse_args()
     name = args.name 
     if "_" in args.name: 
-        answer = raw_input("""Ironically, project names with '_' are problematic. 
+        answer = input("""Ironically, project names with '_' are problematic. 
                               Is the name %s instead OK? [Y/n]? """% (name.replace("_", "")))
         if answer in ("Y", "y", "Yes", "yes", "YES", "Ja", "Sure", "Si"): 
             name = name.replace("_", "")

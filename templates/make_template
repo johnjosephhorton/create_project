@@ -1,3 +1,5 @@
+ts := $(shell /bin/date "+%Y-%m-%d---%H-%M-%S")
+
 {{ project_name }}.pdf: {{ project_name }}.bib {{ project_name }}.tex ./plots/hist.pdf 
 	pdflatex -interaction=nonstopmode {{ project_name }}
 	bibtex {{ project_name }}
@@ -6,6 +8,13 @@
 
 summary.md: {{ project_name }}.bib {{ project_name }}.tex
 	./summary.sh 
+
+backup:
+	tar --exclude='../backups' -zcvf ../backups/{{ project_name }}_$(ts).tar.gz ../
+
+snapshot:
+	@echo Timestamp is $(ts)
+	cp {{ project_name }}.pdf ../snapshots/{{ project_name }}_$(ts).pdf
 
 
 ./plots/hist.pdf: ../code/R/{{ project_name }}.R
